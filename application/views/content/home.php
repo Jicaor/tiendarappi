@@ -44,10 +44,17 @@
                 '</div>';
             $('.modal-body').html(content);
 
-            $(".shopping-cart-rappi").animate({ bottom: "-120px"}, 200);
-            $(".shopping-cart-check").animate({ bottom: "150px"}, 400);
-            $(".shopping-cart-check").animate({ bottom: "-50px"}, 200);
-            $(".shopping-cart-rappi").animate({ bottom: "-160px"}, 200);
+            if($(window).width() < 576){
+                $(".shopping-cart-rappi").animate({ bottom: "-120px"}, 800);
+                $(".shopping-cart-check").animate({ bottom: "150px"}, 800);
+                $(".shopping-cart-check").animate({ bottom: "-50px"}, 500);
+                $(".shopping-cart-rappi").animate({ bottom: "-160px"}, 500);
+            }else {
+                $(".shopping-cart-rappi").animate({ bottom: "-120px"}, 200);
+                $(".shopping-cart-check").animate({ bottom: "150px"}, 400);
+                $(".shopping-cart-check").animate({ bottom: "-50px"}, 200);
+                $(".shopping-cart-rappi").animate({ bottom: "-160px"}, 200);
+            }
 
 
         }else{

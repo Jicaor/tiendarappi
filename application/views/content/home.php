@@ -1,3 +1,10 @@
+<script>
+    function addShoppingCart(id){
+        alert("agregado");
+
+    }
+</script>
+
 <section id="home" class="img-bg">
     <div class="container">
         <div class="row">
@@ -62,7 +69,7 @@
                             <li><i class="fa fa-<?= ($item->best_seller) ? "star" : "archive";?>"></i><span class="<?= ($item->best_seller) ? "best-seller" : "normal-sale";?>"><?= ($item->best_seller) ? " Mas vendido" : " Venta normal";?></span></li>
                         </ul>
                         <div class="pricing-footer"><p><?= $item->description;?></p>
-                            <button class="btn"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+                            <button class="btn" onclick="addShoppingCart(<?= $item->id?>)"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -71,93 +78,112 @@
 
         </div>
     </div>
+
+    <a class="btn-shopping-cart" data-toggle="modal" data-target="#shopping-cart-modal"><img class="shopping-cart-rappi" src="<?= base_url()?>assets/images/shopping_cart_up.png" alt=""></a>
+
     <br><br><br>
 </section>
 
-<!--script>
 
+<!-- Modal -->
+<div id="shopping-cart-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-    $(document).ready(function () {
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Carrito de compras</h4>
+            </div>
+            <div class="width-infinity">
+                <div class="modal-body">
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-        // Assign handlers immediately after making the request,
-        // and remember the jqxhr object for this request
+                    </div>
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-        var jqxhr = $.getJSON("<?= base_url()?>assets/json/data.json", function (data) {
+                    </div>
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-                var products_cont = $('#products-content');
-                var content = products_cont.html();
+                    </div>
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-                for (var x in data.products) {
+                    </div>
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-                    var categories = "";
-                    for (var i in data.products[x].categories) {
-                        categories += data.products[x].categories[i] + " ";
-                    }
+                    </div>
+                    <div class="panel panel-primary panel-rappi-shopping">
+                        <div class="panel-heading">Panel Heading</div>
+                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
+                        <div class="panel-body text-center">
+                            <h4 class="price text-center">$ 60.000</h4>
+                            </div>
+                        <div class="text-center product-cant">
+                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
+                            <span class="number">0</span>
+                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
 
-                    var price = parseInt((data.products[x].price).replace(".", ""));
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    if (price <= 10000) {
-                        classPrice = "less10";
-                    }
-
-                    if (price >= 30000) {
-                        classPrice = "greater30";
-                    }
-
-                    if (data.products[x].available) {
-                        classAvailable = "available";
-                        classAvailableFa = "check";
-                    } else {
-                        classAvailable = "not-available";
-                        classAvailableFa = "times";
-                    }
-
-                    if (data.products[x].best_seller) {
-                        classBestSeller = "best-seller";
-                        classBestSellerFa = "check";
-                    } else {
-                        classBestSeller = "not-best-seller";
-                        classBestSellerFa = "times";
-                    }
-
-                    content += '<div class="product-item col-xs-12 col-sm-4 col-md-3 ' + categories + ' ' + classPrice + ' ' + classAvailable + ' ' + classBestSeller + '">' +
-                        '    <div class="pricing">' +
-                        '        <div class="pricing-head">' +
-                        '            <h3 class="name">' + data.products[x].name + '</h3>' +
-                        '            <img src="' + data.products[x].img + '" alt="" width="100%">' +
-                        '            <h4>$ <span class="price">' + data.products[x].price + '</span></h4>' +
-                        '        </div>' +
-                        '        <ul class="pricing-content list-unstyled">' +
-                        '            <li><i class="fa fa-' + classAvailableFa + '"></i><span class="available"> Available</span></li>' +
-                        '            <li><i class="fa fa-' + classBestSellerFa + '"></i><span class="best-seller"> Best seller</span></li>' +
-                        '       </ul>' +
-                        '        <div class="pricing-footer">' +
-                        '            <p>' + data.products[x].description + '</p>' +
-                        '            <button class="btn" data-ember-action="" data-ember-action-347="347"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</div>';
-                }
-                products_cont.html(content);
-
-            })
-            .done(function () {
-                //console.log( "second success" );
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                //console.log("complete");
-            });
-
-        // Perform other work here ...
-
-        // Set another completion function for the request above
-
-        jqxhr.complete(function () {
-            console.log("second complete");
-        });
-
-    });
-</script-->
+    </div>
+</div>

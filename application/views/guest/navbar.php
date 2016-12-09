@@ -4,10 +4,6 @@
         <a href="#menu"><span>Menu</span></a>
     </nav>
     <p class="logo">Tienda Rappi</p>
-
-    <nav class="right">
-        <a href=""><i class="fa fa-shopping-cart"></i></a>
-    </nav>
 </header>
 
 <!-- Menu -->

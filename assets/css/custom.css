@@ -709,6 +709,84 @@ section.img-bg {
     font-family: "Pacifico", cursive;
 }
 
+.shopping-cart-rappi {
+    position: fixed;
+    bottom: -160px;
+    left: calc(50% - 128px);
+    z-index: 9;
+}
+
+.btn-shopping-cart:hover{
+    cursor: pointer;
+}
+
+#shopping-cart-modal .modal-content {
+    margin-top: 100px;
+    height: 500px;
+    max-height: 500px;
+}
+
+#shopping-cart-modal .modal-header {
+    background-color: #F6755E;
+}
+#shopping-cart-modal .modal-header h4{
+    font-family: "Pacifico", cursive;
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+#shopping-cart-modal .width-infinity{
+    width: 100%;
+    overflow-x: scroll;
+}
+
+#shopping-cart-modal .modal-body{
+    width: 7000px;
+}
+#shopping-cart-modal .panel-rappi-shopping{
+    float: left;
+    margin-right: 20px;
+    display: inline-block;
+}
+#shopping-cart-modal .price{
+    font-family: "Pacifico", cursive;
+    font-style: italic;
+    font-size: 35px;
+    color: #F6755E;
+}
+
+.panel-rappi-shopping {
+    border-radius:  7px;
+    border-color: #F6755E;
+}
+
+.panel-rappi-shopping:hover {
+    margin-top: -10px;
+    box-shadow:0 0 15px #555;
+    transition: all 0.3s ease;
+}
+
+.panel-rappi-shopping  .panel-heading{
+    background-color: #F6755E;
+    border-color: #F6755E;
+    font-size: 15px;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+
+.panel-rappi-shopping .product-cant{
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.panel-rappi-shopping .number{
+    padding: 10px;
+}
+
+.panel-btn-delete {
+    margin-bottom: 20px;
+}
+
 @media screen /*xs*/
 and (max-width: 576px) {
 

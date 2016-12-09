@@ -16,4 +16,7 @@
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>/assets/css/custom.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="<?= base_url()?>/assets/plugins/js/jquery.min.js"></script>
 </head>

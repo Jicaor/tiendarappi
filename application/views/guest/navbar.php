@@ -13,7 +13,7 @@
 <!-- Menu -->
 <nav id="menu">
     <ul class="links">
-        <li><a href="">Home</a></li>
-        <li><a href="">About</a></li>
+        <li><a href="<?= base_url()?>">Inicio</a></li>
+        <li><a href="<?= base_url()?>about">Sobre Tienda Rappi</a></li>
     </ul>
 </nav>

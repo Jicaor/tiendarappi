@@ -8,27 +8,30 @@
             <div id="filters" style="margin-bottom: 60px">
                 <div class="col-xs-12 col-sm-4 ui-group">
                     <h3>Categorias</h3>
+
                     <div data-filter-group="categories" class="button-group js-radio-button-group">
                         <button data-filter="" class="button is-checked">Todas</button>
-                        <button data-filter=".1" class="button">drinks</button>
-                        <button data-filter=".2" class="button">lunch</button>
-                        <button data-filter=".3" class="button">food</button>
-                        <button data-filter=".4" class="button">sea</button>
+
+                        <?php foreach ($categories as $item): ?>
+                            <button data-filter=".<?= $item->categori_id;?>" class="button"><?= $item->name;?></button>
+                        <?php endforeach ?>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 ui-group">
                     <h3>Tipo</h3>
+
                     <div data-filter-group="size" class="button-group js-radio-button-group">
                         <button data-filter="" class="button is-checked">Todos</button>
                         <button data-filter=".available" class="button">Disponibles</button>
                         <button data-filter=".not-available" class="button">Agotados</button>
-                        <button data-filter=".best_seller" class="button">Mas vendidos</button>
+                        <button data-filter=".best-seller" class="button">Mas vendidos</button>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 ui-group">
                     <h3>Precio</h3>
+
                     <div data-filter-group="color" class="button-group js-radio-button-group">
                         <button data-filter="" class="button is-checked">Todos</button>
                         <button data-filter=".greater30" class="button">Mayores a $ 30.000</button>
@@ -47,198 +50,114 @@
                 </div>
             </div>
 
-            <div class="products-content">
-                <div class="product-item col-xs-12 col-sm-4 col-md-3">
-
+            <div id="products-content">
+                <?php foreach ($products as $item): ?>
+                <div class="product-item col-xs-12 col-sm-4 col-md-3 <?= ($item->available) ? "available" : "not-available";?> <?= ($item->best_seller) ? "best-seller" : "normal-sale";?> <?= ($item->best_seller) ? "best-seller" : "normal-sale";?> <?php foreach ($item->categories as $category) {echo $category." ";} ?> <?= (intval(str_replace(".", "", $item->price)) <= 10000)? "less10": ((intval(str_replace(".", "", $item->price)) >=30000)? "greater30": "");?>" style="height: 560px">
                     <div class="pricing">
-                        <div class="pricing-head">
-                            <h3 class="name">Lorem</h3>
-                            <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                            <h4>$ <span class="price">60.000</span></h4>
-                        </div>
+                        <div class="pricing-head"><h3 class="name"><?= $item->name;?></h3>
+                            <img src="<?= $item->img;?>" alt="" width="100%">
+                            <h4>$ <span class="price"><?= $item->price;?></span></h4></div>
                         <ul class="pricing-content list-unstyled">
-                            <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                            <li><i class="fa fa-check"></i><span class="best-seller"> Best seller</span></li>
+                            <li><i class="fa fa-<?= ($item->available) ? "check" : "times";?>"></i><span class="<?= ($item->available) ? "available" : "not-available";?>"><?= ($item->available) ? " Disponible" : " No disponible";?></span></li>
+                            <li><i class="fa fa-<?= ($item->best_seller) ? "star" : "archive";?>"></i><span class="<?= ($item->best_seller) ? "best-seller" : "normal-sale";?>"><?= ($item->best_seller) ? " Mas vendido" : " Venta normal";?></span></li>
                         </ul>
-                        <div class="pricing-footer">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                            <button class="btn" data-ember-action="" data-ember-action-341="341"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+                        <div class="pricing-footer"><p><?= $item->description;?></p>
+                            <button class="btn"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
-                <div id="ember343" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">ipsum</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">20.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-times"></i><span class="not-available"> Not available</span></li>
-                                <li><i class="fa fa-check"></i><span class="worst-sold"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-344="344"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember346" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">dolor</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">10.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                                <li><i class="fa fa-check"></i><span class="best-seller"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-347="347"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember349" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">sit</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">35.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-times"></i><span class="not-available"> Not available</span></li>
-                                <li><i class="fa fa-check"></i><span class="worst-sold"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-350="350"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember352" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">amet</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">12.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                                <li><i class="fa fa-check"></i><span class="best-seller"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-353="353"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember355" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">consectetur</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">120.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                                <li><i class="fa fa-check"></i><span class="worst-sold"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-356="356"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember358" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">adipiscing</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">50.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-times"></i><span class="not-available"> Not available</span></li>
-                                <li><i class="fa fa-check"></i><span class="worst-sold"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-359="359"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember361" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">elit</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">2000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                                <li><i class="fa fa-check"></i><span class="worst-sold"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-362="362"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember364" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">Maecenas</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">150.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-check"></i><span class="available"> Available</span></li>
-                                <li><i class="fa fa-check"></i><span class="best-seller"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-365="365"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ember367" class="ember-view"><div class="product-item col-xs-12 col-sm-4 col-md-3">
-
-                        <div class="pricing">
-                            <div class="pricing-head">
-                                <h3 class="name">eu</h3>
-                                <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                                <h4>$ <span class="price">200.000</span></h4>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li><i class="fa fa-times"></i><span class="not-available"> Not available</span></li>
-                                <li><i class="fa fa-check"></i><span class="best-seller"> Best seller</span></li>
-                            </ul>
-                            <div class="pricing-footer">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu.</p>
-                                <button class="btn" data-ember-action="" data-ember-action-368="368"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
             </div>
+
         </div>
     </div>
     <br><br><br>
 </section>
+
+<!--script>
+
+
+    $(document).ready(function () {
+
+        // Assign handlers immediately after making the request,
+        // and remember the jqxhr object for this request
+
+        var jqxhr = $.getJSON("<?= base_url()?>assets/json/data.json", function (data) {
+
+                var products_cont = $('#products-content');
+                var content = products_cont.html();
+
+                for (var x in data.products) {
+
+                    var categories = "";
+                    for (var i in data.products[x].categories) {
+                        categories += data.products[x].categories[i] + " ";
+                    }
+
+                    var price = parseInt((data.products[x].price).replace(".", ""));
+
+                    if (price <= 10000) {
+                        classPrice = "less10";
+                    }
+
+                    if (price >= 30000) {
+                        classPrice = "greater30";
+                    }
+
+                    if (data.products[x].available) {
+                        classAvailable = "available";
+                        classAvailableFa = "check";
+                    } else {
+                        classAvailable = "not-available";
+                        classAvailableFa = "times";
+                    }
+
+                    if (data.products[x].best_seller) {
+                        classBestSeller = "best-seller";
+                        classBestSellerFa = "check";
+                    } else {
+                        classBestSeller = "not-best-seller";
+                        classBestSellerFa = "times";
+                    }
+
+                    content += '<div class="product-item col-xs-12 col-sm-4 col-md-3 ' + categories + ' ' + classPrice + ' ' + classAvailable + ' ' + classBestSeller + '">' +
+                        '    <div class="pricing">' +
+                        '        <div class="pricing-head">' +
+                        '            <h3 class="name">' + data.products[x].name + '</h3>' +
+                        '            <img src="' + data.products[x].img + '" alt="" width="100%">' +
+                        '            <h4>$ <span class="price">' + data.products[x].price + '</span></h4>' +
+                        '        </div>' +
+                        '        <ul class="pricing-content list-unstyled">' +
+                        '            <li><i class="fa fa-' + classAvailableFa + '"></i><span class="available"> Available</span></li>' +
+                        '            <li><i class="fa fa-' + classBestSellerFa + '"></i><span class="best-seller"> Best seller</span></li>' +
+                        '       </ul>' +
+                        '        <div class="pricing-footer">' +
+                        '            <p>' + data.products[x].description + '</p>' +
+                        '            <button class="btn" data-ember-action="" data-ember-action-347="347"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>' +
+                        '        </div>' +
+                        '    </div>' +
+                        '</div>';
+                }
+                products_cont.html(content);
+
+            })
+            .done(function () {
+                //console.log( "second success" );
+            })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                //console.log("complete");
+            });
+
+        // Perform other work here ...
+
+        // Set another completion function for the request above
+
+        jqxhr.complete(function () {
+            console.log("second complete");
+        });
+
+    });
+</script-->

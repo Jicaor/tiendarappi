@@ -121,7 +121,7 @@
                             <li><i class="fa fa-<?= ($item->best_seller) ? "star" : "archive";?>"></i><span class="<?= ($item->best_seller) ? "best-seller" : "normal-sale";?>"><?= ($item->best_seller) ? " Mas vendido" : " Venta normal";?></span></li>
                         </ul>
                         <div class="pricing-footer"><p><?= $item->description;?></p>
-                            <button class="btn" onclick="addShoppingCart(<?= $item->id?>, '<?= $item->name?>', <?= $item->price?>)"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+                            <button class="btn" onclick="addShoppingCart(<?= $item->id?>, '<?= $item->name?>', '<?= $item->price?>')"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
                         </div>
                     </div>
                 </div>

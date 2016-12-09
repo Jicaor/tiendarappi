@@ -63,7 +63,7 @@ $(document).ready(function() {
     }) );
 
 
-///// bind sort button click
+    // bind sort button click
     $('.sort-by-button-group').on( 'click', 'button', function() {
 
         var sortValue = $(this).attr('data-sort-value');
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 
 
-// debounce so filtering doesn't happen every millisecond
+    // Debounce so filtering doesn't happen every millisecond
     function debounce( fn, threshold ) {
         var timeout;
         return function debounced() {

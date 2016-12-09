@@ -713,7 +713,15 @@ section.img-bg {
     position: fixed;
     bottom: -160px;
     left: calc(50% - 128px);
-    z-index: 9;
+    z-index: 900;
+}
+
+.shopping-cart-check{
+    position: fixed;
+    width: 100px;
+    bottom: -50px;
+    left: calc(50% - 50px);
+    z-index: 700;
 }
 
 .btn-shopping-cart:hover{
@@ -766,7 +774,7 @@ section.img-bg {
     transition: all 0.3s ease;
 }
 
-.panel-rappi-shopping  .panel-heading{
+.panel-rappi-shopping .panel-heading{
     background-color: #F6755E;
     border-color: #F6755E;
     font-size: 15px;

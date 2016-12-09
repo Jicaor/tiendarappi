@@ -1,7 +1,59 @@
 <script>
-    function addShoppingCart(id){
-        alert("agregado");
+    var shopping = [];
 
+    function deleteProduct(id){
+        var panel = '.panel-'+id+'';
+        var index = shopping.indexOf(id);
+        if(index != -1)
+            shopping.splice( index, 1 );
+        $(panel).fadeOut();
+    }
+
+    function less(id){
+        var sum = '.cant-'+id+'';
+        if(parseInt($(sum).html())-1 == 0){
+            deleteProduct(id)
+        }else{
+            $(sum).text((parseInt($(sum).html())-1));
+        }
+    }
+
+    function plus(id){
+        var sum = '.cant-'+id+'';
+        $(sum).text((parseInt($(sum).html())+1));
+    }
+
+    function addShoppingCart(id, name, price){
+        if(shopping.indexOf(id) == -1){
+            shopping.push(id);
+
+            var content = $('.modal-body').html();
+
+            content +=  '<div class="panel panel-primary panel-rappi-shopping panel-'+id+'">' +
+                '    <div class="panel-heading">'+name+'</div>' +
+                '    <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">' +
+                '    <div class="panel-body text-center">' +
+                '        <h4 class="price text-center">$ '+price+'</h4>' +
+                '    </div>' +
+                '    <div class="text-center product-cant">' +
+                '        <button class="btn btn-success" onclick="less('+id+')"><i class="fa fa-minus"></i></button>' +
+                '        <span class="number cant-'+id+'">1</span>' +
+                '        <button class="btn btn-success" onclick="plus('+id+')"><i class="fa fa-plus"></i></button>' +
+                '    </div>' +
+                '    <div class="text-center panel-btn-delete" onclick="deleteProduct('+id+')"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>' +
+                '</div>';
+            $('.modal-body').html(content);
+
+            $(".shopping-cart-rappi").animate({ bottom: "-120px"}, 200);
+            $(".shopping-cart-check").animate({ bottom: "150px"}, 400);
+            $(".shopping-cart-check").animate({ bottom: "-50px"}, 200);
+            $(".shopping-cart-rappi").animate({ bottom: "-160px"}, 200);
+
+
+        }else{
+            sum = '.cant-'+id+'';
+            $(sum).text((parseInt($(sum).html())+1));
+        }
     }
 </script>
 
@@ -69,7 +121,7 @@
                             <li><i class="fa fa-<?= ($item->best_seller) ? "star" : "archive";?>"></i><span class="<?= ($item->best_seller) ? "best-seller" : "normal-sale";?>"><?= ($item->best_seller) ? " Mas vendido" : " Venta normal";?></span></li>
                         </ul>
                         <div class="pricing-footer"><p><?= $item->description;?></p>
-                            <button class="btn" onclick="addShoppingCart(<?= $item->id?>)"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
+                            <button class="btn" onclick="addShoppingCart(<?= $item->id?>, '<?= $item->name?>', <?= $item->price?>)"><i class="fa fa-shopping-cart"></i> Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +132,7 @@
     </div>
 
     <a class="btn-shopping-cart" data-toggle="modal" data-target="#shopping-cart-modal"><img class="shopping-cart-rappi" src="<?= base_url()?>assets/images/shopping_cart_up.png" alt=""></a>
-
+    <img class="shopping-cart-check" src="<?= base_url()?>assets/images/check.png" alt="">
     <br><br><br>
 </section>
 
@@ -97,90 +149,6 @@
             </div>
             <div class="width-infinity">
                 <div class="modal-body">
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
-                    <div class="panel panel-primary panel-rappi-shopping">
-                        <div class="panel-heading">Panel Heading</div>
-                        <img src="http://lorempixel.com/200/100/food/" alt="" width="100%">
-                        <div class="panel-body text-center">
-                            <h4 class="price text-center">$ 60.000</h4>
-                            </div>
-                        <div class="text-center product-cant">
-                            <button class="btn btn-success"><i class="fa fa-minus"></i></button>
-                            <span class="number">0</span>
-                            <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="text-center panel-btn-delete"><button class="btn btn-lg btn-danger text-center">Eliminar</button></div>
-
-                    </div>
                 </div>
             </div>
         </div>

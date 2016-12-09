@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+Redirect 301 /our-portfolio/suite-mansion /suites/mansion
+Redirect 301 /our-portfolio/suite-d /suites/d
+Redirect 301 /our-portfolio/suite-premium /suites/premium
+Redirect 301 /our-portfolio/suite-presidencial /suites/presidencial
+Redirect 301 /our-portfolio/suite-gold /suites/gold
+Redirect 301 /our-portfolio/suite-ibiza-c /suites/c
+Redirect 301 /our-portfolio/suite-ibiza-m /suites/m
+Redirect 301 /menu /gastronomia
+Redirect 301 /cocktails /gastronomia
+Redirect 301 /catalogo /boutique
+Redirect 301 /contacto /nosotros
+</IfModule>
+<IfModule !mod_rewrite.c>
+ErrorDocument 404 index.php
+</IfModule>
